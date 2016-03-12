@@ -548,9 +548,10 @@ public class CoachMarksController: UIViewController, OverlayViewDelegate {
         // is displayed. We call the delegate to notify that the current coach
         // mark will disappear, and only then, we hide the coach mark.
         if self.currentIndex > 0 {
-            if self.currentCoachMark != nil {
-                self.delegate?.coachMarksController(self, coachMarkWillDisappear: self.currentCoachMark!, forIndex: self.currentIndex - 1)
+            if let mark = self.currentCoachMark {
+                self.delegate?.coachMarksController(self, coachMarkWillDisappear: mark, forIndex: self.currentIndex - 1)
             }
+            
             if hidePrevious {
                 self.coachMarkDisplayManager.hideCoachMarkView(self.currentCoachMarkView, animationDuration: self.currentCoachMark!.animationDuration) {
                     self.removeTargetFromCurrentCoachView()
